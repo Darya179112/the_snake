@@ -1,6 +1,6 @@
-import pygame
 import random
-from pygame.locals import *
+import pygame
+from pygame.locals import K_DOWN, K_LEFT, K_RIGHT, K_UP, KEYDOWN, QUIT
 
 # Константы игры
 SCREEN_WIDTH = 640
@@ -32,7 +32,8 @@ class GameObject:
     
     def __init__(self, position=None, body_color=None):
         """Инициализирует игровой объект."""
-        self.position = position if position else (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
+        self.position = position if position else (
+            SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
         self.body_color = body_color
     
     def draw(self, surface):
@@ -56,7 +57,7 @@ class Apple(GameObject):
         self.randomize_position()
     
     def randomize_position(self):
-        """Устанавливает случайную позицию для яблока в пределах игрового поля."""
+        """Устанавливает случайную позицию для яблока."""
         x = random.randint(0, GRID_WIDTH - 1) * GRID_SIZE
         y = random.randint(0, GRID_HEIGHT - 1) * GRID_SIZE
         self.position = (x, y)
@@ -218,4 +219,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    
