@@ -21,6 +21,10 @@ BOARD_BACKGROUND_COLOR = (0, 0, 0)
 SNAKE_COLOR = (0, 255, 0)
 APPLE_COLOR = (255, 0, 0)
 
+# Глобальные переменные для тестирования
+screen = None
+clock = None
+
 
 class GameObject:
     """
@@ -72,12 +76,12 @@ class Snake(GameObject):
     """
     Класс для представления змейки в игре.
     Атрибуты:
-    positions: список позиций всех сегментов змейки
-    direction: текущее направление движения
-    next_direction: следующее направление движения
-    body_color: цвет змейки (зеленый)
-    length: текущая длина змейки
-    last: позиция последнего удаленного сегмента
+        positions: список позиций всех сегментов змейки
+        direction: текущее направление движения
+        next_direction: следующее направление движения
+        body_color: цвет змейки (зеленый)
+        length: текущая длина змейки
+        last: позиция последнего удаленного сегмента
     """
 
     def __init__(self):
@@ -171,6 +175,7 @@ def main():
     pygame.init()
 
     # Создание игрового окна
+    global screen, clock
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     pygame.display.set_caption('Изгиб Питона')
 
