@@ -71,7 +71,6 @@ class Apple(GameObject):
 class Snake(GameObject):
     """
     Класс для представления змейки в игре.
-    
     Атрибуты:
     positions: список позиций всех сегментов змейки
     direction: текущее направление движения
@@ -149,7 +148,6 @@ class Snake(GameObject):
 def handle_keys(snake):
     """
     Обрабатывает нажатия клавиш для изменения направления движения змейки.
-    
     Аргументы:
     snake: экземпляр класса Snake
     """
