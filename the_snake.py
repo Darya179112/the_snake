@@ -29,10 +29,9 @@ clock = None
 class GameObject:
     """
     Базовый класс для всех игровых объектов.
-    
     Атрибуты:
-        position: кортеж (x, y) с координатами объекта
-        body_color: кортеж (R, G, B) с цветом объекта
+    position: кортеж (x, y) с координатами объекта
+    body_color: кортеж (R, G, B) с цветом объекта
     """
 
     def __init__(self, position=None, body_color=None):
@@ -49,10 +48,9 @@ class GameObject:
 class Apple(GameObject):
     """
     Класс для представления яблока в игре.
-    
     Атрибуты:
-        position: кортеж (x, y) с координатами яблока
-        body_color: цвет яблока (красный)
+    position: кортеж (x, y) с координатами яблока
+    body_color: цвет яблока (красный)
     """
 
     def __init__(self):
@@ -77,14 +75,13 @@ class Apple(GameObject):
 class Snake(GameObject):
     """
     Класс для представления змейки в игре.
-    
     Атрибуты:
-        positions: список позиций всех сегментов змейки
-        direction: текущее направление движения
-        next_direction: следующее направление движения
-        body_color: цвет змейки (зеленый)
-        length: текущая длина змейки
-        last: позиция последнего удаленного сегмента
+    positions: список позиций всех сегментов змейки
+    direction: текущее направление движения
+    next_direction: следующее направление движения
+     body_color: цвет змейки (зеленый)
+    length: текущая длина змейки
+    last: позиция последнего удаленного сегмента
     """
 
     def __init__(self):
@@ -155,9 +152,8 @@ class Snake(GameObject):
 def handle_keys(snake):
     """
     Обрабатывает нажатия клавиш для изменения направления движения змейки.
-    
     Аргументы:
-        snake: экземпляр класса Snake
+    snake: экземпляр класса Snake
     """
     for event in pygame.event.get():
         if event.type == QUIT:
