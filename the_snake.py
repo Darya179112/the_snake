@@ -21,9 +21,10 @@ BOARD_BACKGROUND_COLOR = (0, 0, 0)
 SNAKE_COLOR = (0, 255, 0)
 APPLE_COLOR = (255, 0, 0)
 
-# Глобальные переменные для тестирования
-screen = None
-clock = None
+# Инициализация pygame для глобальных переменных
+pygame.init()
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+clock = pygame.time.Clock()
 
 
 class GameObject:
@@ -79,7 +80,7 @@ class Snake(GameObject):
     positions: список позиций всех сегментов змейки
     direction: текущее направление движения
     next_direction: следующее направление движения
-     body_color: цвет змейки (зеленый)
+    body_color: цвет змейки (зеленый)
     length: текущая длина змейки
     last: позиция последнего удаленного сегмента
     """
@@ -172,19 +173,9 @@ def handle_keys(snake):
 
 def main():
     """Основная функция игры, содержащая главный игровой цикл."""
-    pygame.init()
-
-    # Создание игрового окна
-    global screen, clock
-    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    pygame.display.set_caption('Изгиб Питона')
-
     # Создание игровых объектов
     snake = Snake()
     apple = Apple()
-
-    # Создание часов для контроля FPS
-    clock = pygame.time.Clock()
 
     # Главный игровой цикл
     while True:
@@ -219,6 +210,43 @@ def main():
         clock.tick(10)
 
 
-# Проверяем, что main() вызывается только при прямом запуске файла
+# Версия main() для тестирования
+def test_main():
+    """Версия main() для тестирования, которая выполняется один раз."""
+    # Создание игровых объектов
+    snake = Snake()
+    apple = Apple()
+
+    # Обработка событий
+    handle_keys(snake)
+
+    # Обновление направления змейки
+    snake.update_direction()
+
+    # Перемещение змейки
+    snake.move()
+
+    # Проверка, съела ли змейка яблоко
+    if snake.get_head_position() == apple.position:
+        snake.length += 1
+        apple.randomize_position()
+        # Убеждаемся, что яблоко не появилось на змейке
+        while apple.position in snake.positions:
+            apple.randomize_position()
+
+    # Отрисовка игрового поля
+    screen.fill(BOARD_BACKGROUND_COLOR)
+
+    # Отрисовка игровых объектов
+    snake.draw(screen)
+    apple.draw(screen)
+
+    # Обновление экрана
+    pygame.display.update()
+
+    # Контроль FPS (один кадр)
+    clock.tick(10)
+
+
 if __name__ == '__main__':
     main()
